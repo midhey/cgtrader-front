@@ -1,0 +1,27 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Build FrontEnd
+        run: |
+          npm install
+          npm run build
+
+      - name: Deploy to server
+        run: |
+          echo "${{ secrets.SERVER_SSH_PRIVATE_KEY }}" > deploy_key.pem
+          chmod 600 deploy_key.pem
+          scp -r -i deploy_key.pem -o  StrictHostKeyChecking=no dist/* ${{ secrets.USER }}@${{ secrets.HOST }}:/usr/share/nginx/html
+        env:
+          PRIVATE_KEY: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
