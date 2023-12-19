@@ -21,7 +21,7 @@ const store = createStore({
         async login({ commit }, { login, password }) {
             try {
                 // Выполните запрос к серверу для аутентификации
-                const response = await axios.post('/api/auth/sign_in', {
+                const response = await axios.post('/auth/sign_in', {
                     login,
                     password,
                 });

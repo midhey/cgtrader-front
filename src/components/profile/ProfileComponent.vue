@@ -44,7 +44,7 @@ export default {
       }
 
       // Выполняем запрос к API при создании компонента
-      const response = await axios.get('/api/profile');
+      const response = await axios.get('/profile');
       this.profile = response.data.data;
     } catch (error) {
       console.error('Error loading profile:', error);
