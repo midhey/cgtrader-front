@@ -44,7 +44,7 @@ export default {
       }
 
       // Выполняем запрос к API при создании компонента
-      const response = await axios.get('http://95.214.62.15:8080/profile');
+      const response = await axios.get('http://localhost:8080/profile');
       this.profile = response.data.data;
     } catch (error) {
       console.error('Error loading profile:', error);
