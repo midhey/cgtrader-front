@@ -22,6 +22,6 @@ jobs:
         run: |
           echo "${{ secrets.SERVER_SSH_PRIVATE_KEY }}" > deploy_key.pem
           chmod 600 deploy_key.pem
-          scp -r -i deploy_key.pem -o  StrictHostKeyChecking=no dist/* ${{ secrets.USER }}@${{ secrets.HOST }}:/usr/share/nginx/html
+          scp -r -i deploy_key.pem -o  StrictHostKeyChecking=no dist/* ${{ secrets.USER }}@${{ secrets.HOST }}:/var/www/adminer
         env:
           PRIVATE_KEY: ${{ secrets.SERVER_SSH_PRIVATE_KEY }}
